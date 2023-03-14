@@ -12,9 +12,10 @@ uint32_t HashUtil::MurmurHash3(const long long key)
 {
 	return ::MurmurHash3((const char*)&key, sizeof(long long));
 }
-uint32_t HashUtil::MurmurHash3(const char* key)
+uint32_t HashUtil::MurmurHash3(std::string key)
 {
-	return ::MurmurHash3(key, sizeof(char*));
+	const char *shardkey_bytes = const_cast<char*>(key.c_str());
+	return ::MurmurHash3(shardkey_bytes, key.size());
 }
 
 //https://code.google.com/p/smhasher/wiki/MurmurHash3
