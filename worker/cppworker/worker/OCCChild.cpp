@@ -5702,8 +5702,16 @@ uint OCCChild::compute_scuttle_id(unsigned long long _shardkey_val)
 uint OCCChild::compute_scuttle_id(std::string _shardkey_str_val)
 {
 	uint scuttle_id = 0;
-	const char *shardkey_bytes = const_cast<char*>(_shardkey_str_val.c_str());
-	scuttle_id = HashUtil::MurmurHash3(shardkey_bytes) % m_max_scuttle_buckets;
+	const char *shardkey_str_bytes = const_cast<char*>(_shardkey_str_val.c_str());
+	switch(m_sharding_algo)
+	{
+		case MOD_ONLY:
+		case HASH_MOD:
+			scuttle_id = HashUtil::MurmurHash3(shardkey_str_bytes) % m_max_scuttle_buckets;
+			break;
+		default:
+			break;
+	}
 	return scuttle_id;
 }
 
