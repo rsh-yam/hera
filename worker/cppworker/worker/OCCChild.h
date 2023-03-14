@@ -274,6 +274,7 @@ private:
 	SQLRewriter m_rewriter;
 	bool m_sql_rewritten;
 	bool m_enable_sql_rewrite;
+	bool m_shard_key_value_type_string;
 	std::string m_orig_query_hash;
 	int bits_to_match; // Sampled Bind Hash logging. Sampling ratio (1:pow(2,bits_to_match)). Default 1 (Sampling ratio 1:2)
 	unsigned long long int bit_mask; // Compute based on bits_to_match
