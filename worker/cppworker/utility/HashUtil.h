@@ -26,6 +26,9 @@ public:
 
 	/** Deprecated, only for sharding. */
 	static uint32_t MurmurHash3(const long long key);
+	
+	/** Deprecated, only for sharding. */
+	static uint32_t MurmurHash3(const char * key);
 };
 
 #endif // HASH_UTIL_H
