@@ -5699,6 +5699,14 @@ uint OCCChild::compute_scuttle_id(unsigned long long _shardkey_val)
 	return scuttle_id;
 }
 
+uint OCCChild::compute_scuttle_id(std::string _shardkey_str_val)
+{
+	uint scuttle_id = 0;
+	const char *shardkey_bytes = const_cast<char*>(_shardkey_str_val.c_str());
+	scuttle_id = HashUtil::MurmurHash3(shardkey_bytes) % m_max_scuttle_buckets;
+	return scuttle_id;
+}
+
 sb4 OCCChild::cb_failover(void *svchp, void *envhp, void *fo_ctx, ub4 fo_type, ub4 fo_event)
 {
 	if (fo_event == OCI_FO_BEGIN) {
