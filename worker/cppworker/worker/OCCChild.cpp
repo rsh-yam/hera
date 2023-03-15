@@ -462,6 +462,7 @@ OCCChild::OCCChild(const InitParams& _params) : Worker(_params),
 	if (m_enable_sharding) {
 		m_max_scuttle_buckets = config->get_int("max_scuttle", ABS_MAX_SCUTTLE_BUCKETS);
 		m_scuttle_attr_name = config->get_string("scuttle_col_name", DEFAULT_SCUTTLE_ATTR_NAME);
+		m_shard_key_value_type_string = config->get_bool("shard_key_value_type_is_string", false);
 		std::string algo = config->get_string("sharding_algo", DEFAULT_SHARDING_ALGO);
 		StringUtil::to_lower_case(algo);
 		if (algo.compare(MOD_ONLY_SHARDING_ALGO) == 0)
@@ -930,7 +931,6 @@ int OCCChild::handle_command(const int _cmd, std::string &_line)
 							WRITE_LOG_ENTRY(logfile, LOG_VERBOSE, "m_scuttle_id null in sql rewrite to mirror null shard key value");
 					} else {
 						std::string scuttle_id_str_val;
-						bool string_shard_key = config->get_bool("shard_key_value_type_is_string", false);
 						if (string_shard_key) {
 							if (logfile->get_log_level() >= LOG_VERBOSE)
 								WRITE_LOG_ENTRY(logfile, LOG_VERBOSE, "shard_key_value_type_is_string true in sql rewrite");
