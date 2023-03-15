@@ -931,7 +931,7 @@ int OCCChild::handle_command(const int _cmd, std::string &_line)
 							WRITE_LOG_ENTRY(logfile, LOG_VERBOSE, "m_scuttle_id null in sql rewrite to mirror null shard key value");
 					} else {
 						std::string scuttle_id_str_val;
-						if (string_shard_key) {
+						if (m_shard_key_value_type_string) {
 							if (logfile->get_log_level() >= LOG_VERBOSE)
 								WRITE_LOG_ENTRY(logfile, LOG_VERBOSE, "shard_key_value_type_is_string true in sql rewrite");
 							StringUtil::fmt_ulong(scuttle_id_str_val, compute_scuttle_id(bind_values));
