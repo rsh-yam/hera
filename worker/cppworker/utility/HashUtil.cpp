@@ -1,5 +1,6 @@
 // On 2020-07, https://github.com/aappleby/smhasher notes that MurmurHash is public domain
 #include "HashUtil.h"
+#include <string>
 
 // just in this file
 static uint32_t MurmurHash3(const char * key, int len);
