@@ -18,6 +18,7 @@
 #define HASH_UTIL_H
 
 #include <stdint.h>
+#include <string>
 
 class HashUtil {
 public:
