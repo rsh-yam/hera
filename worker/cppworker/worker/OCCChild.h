@@ -516,7 +516,8 @@ private:
 	int trans_forget(void);
 	// check with oracle if we're in transaction
 	virtual bool is_in_transaction();
-    virtual uint compute_scuttle_id(unsigned long long _shardkey_val);
+	virtual uint compute_scuttle_id(unsigned long long _shardkey_val);
+	virtual uint compute_scuttle_id(std::string _shardkey_str_val);
 
 	// handle OCI_SUCCESS_WITH_INFO
 	void check_OCI_SUCCESS_WITH_INFO(int& _rc, const char* _message, LogLevelEnum _log_level);
