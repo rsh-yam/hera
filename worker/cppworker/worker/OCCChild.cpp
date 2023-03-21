@@ -799,9 +799,16 @@ int OCCChild::handle_command(const int _cmd, std::string &_line)
 			uint32_t scuttle_id_val = 0;
 			if (values.size() && strcasecmp(name.c_str(), m_shard_key_name.c_str()) == 0)
 			{
-				// cast to long long
-				unsigned long long shard_val = StringUtil::to_ullong(values[0]);
-				scuttle_id_val = compute_scuttle_id(shard_val);
+				if (m_shard_key_value_type_string) {
+					if (logfile->get_log_level() >= LOG_VERBOSE)
+						WRITE_LOG_ENTRY(logfile, LOG_VERBOSE, "shard_key_value_type_is_string true");
+					scuttle_id_val = compute_scuttle_id(values[0]);	
+				}
+				else {
+					// cast to long long
+					unsigned long long shard_val = StringUtil::to_ullong(values[0]);
+					scuttle_id_val = compute_scuttle_id(shard_val);
+				}
 				StringUtil::fmt_ulong(m_scuttle_id, scuttle_id_val);
 				if (logfile->get_log_level() >= LOG_DEBUG)
 				{
